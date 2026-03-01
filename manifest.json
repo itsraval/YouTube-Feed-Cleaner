@@ -1,0 +1,15 @@
+{
+    "name": "YouTube Feed Cleaner",
+    "version": "1.0",
+    "manifest_version": 3,
+    "options_page": "options.html",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [{
+        "matches": ["*://*.youtube.com/*"], 
+        // ["https://www.youtube.com", "https://www.youtube.com/feed/subscriptions"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+    }]
+}
