@@ -1,44 +1,50 @@
-// Saves options to chrome.storage
+// Sets browser api
+const api = typeof browser !== "undefined" ? browser : chrome;
+
+// Saves options to storage
 const saveOptions = () => {
     const removeShorts = document.getElementById('shorts').checked;
     const removeRelevant = document.getElementById('relevant').checked;
     const removeBreakingNews = document.getElementById('breakingNews').checked;
     const removeTrending = document.getElementById('trending').checked;
+    const removeTopNews = document.getElementById('topNews').checked;
+    const removeExploreMoreTopics = document.getElementById('exploreMoreTopics').checked;
 
-    chrome.storage.sync.set({
+    api.storage.sync.set({
             removeShorts,
             removeRelevant,
             removeBreakingNews,
-            removeTrending
-        },
-        () => {
-            let ss = document.getElementById("settingsSaved")
+            removeTrending,
+            removeTopNews,
+            removeExploreMoreTopics
+    }).then(() => {
+        let ss = document.getElementById("settingsSaved")
+        ss.style.transition = 'opacity 1s ease';
+        ss.style.opacity = "1";
+        setTimeout(() => {
             ss.style.transition = 'opacity 1s ease';
-            ss.style.opacity = "1"
-            setTimeout(() => {
-                ss.style.transition = 'opacity 1s ease';
-                ss.style.opacity = '0';
-            }, 3500);
-
-        }
-    );
+            ss.style.opacity = '0';
+        }, 3500);
+    });
 };
 
-// Restores checkbox state using the preferences stored in chrome.storage.
+// Restores checkbox state
 const restoreOptions = () => {
-    chrome.storage.sync.get({
-            removeShorts: true,
-            removeRelevant: true,
-            removeBreakingNews: true,
-            removeTrending: true
-        }, // Default values
-        (items) => {
-            document.getElementById('shorts').checked = items.removeShorts;
-            document.getElementById('relevant').checked = items.removeRelevant;
-            document.getElementById('breakingNews').checked = items.removeBreakingNews;
-            document.getElementById('trending').checked = items.removeTrending;
-        }
-    );
+    api.storage.sync.get({
+        removeShorts: true,
+        removeRelevant: true,
+        removeBreakingNews: false,
+        removeTrending: false,
+        removeTopNews: false,
+        removeExploreMoreTopics: false
+    }).then((items) => {
+        document.getElementById('shorts').checked = items.removeShorts;
+        document.getElementById('relevant').checked = items.removeRelevant;
+        document.getElementById('breakingNews').checked = items.removeBreakingNews;
+        document.getElementById('trending').checked = items.removeTrending;
+        document.getElementById('topNews').checked = items.removeTopNews;
+        document.getElementById('exploreMoreTopics').checked = items.removeExploreMoreTopics;
+    });
 };
 
 document.addEventListener('DOMContentLoaded', restoreOptions);

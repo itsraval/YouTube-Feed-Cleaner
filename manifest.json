@@ -7,9 +7,17 @@
         "storage"
     ],
     "content_scripts": [{
-        "matches": ["*://*.youtube.com/*"], 
+        "matches": ["*://*.youtube.com/*"],
         // ["https://www.youtube.com", "https://www.youtube.com/feed/subscriptions"],
         "js": ["content.js"],
         "run_at": "document_idle"
-    }]
+    }],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "@yt-feed-cleaner.itsraval",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
+        }
+    }
 }
