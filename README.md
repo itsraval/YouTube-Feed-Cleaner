@@ -24,7 +24,7 @@ This extension targets `ytd-rich-section-renderer` containers specifically to av
 1.  **Download** the file `YouTubeFeedCleaner.xpi` from this repository.
 2.  Open Firefox and navigate to `about:addons`.
 3.  Click **"Setting wheel"** (in the top-right corner).
-4.  Click **"INstall Add-on From File..."** and select `YouTubeFeedCleaner.xpi` file.
+4.  Click **"Install Add-on From File..."** and select `YouTubeFeedCleaner.xpi` file.
 5.  Refresh YouTube and enjoy the silence.
 
 ## ⚙️ How to Customize
@@ -44,3 +44,4 @@ Once installed, you can tailor the experience:
 
 Have a specific section you want to block? 
 Feel free to fork this repo, add your logic to `content.js`, `options.js` and `options.html`, and submit a PR!
+
